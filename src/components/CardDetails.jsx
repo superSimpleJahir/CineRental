@@ -6,11 +6,10 @@ import { MovieContext } from '../context';
 import { getImageUrl } from '../utils/cine-utility';
 
 function CardDetails({ onCloseModal }) {
-  const { cartData, setCartData } = useContext(MovieContext);
+  const { state, dispatch } = useContext(MovieContext);
 
   const handleRemoveFromCart = (id) => {
-    const updatedCartData = cartData.filter((movie) => movie.id !== id);
-    setCartData(updatedCartData);
+    dispatch({ type: 'REMOVE_FROM_CART', payload: id });
   }
   return (
     <>
@@ -21,12 +20,12 @@ function CardDetails({ onCloseModal }) {
             <h2 className="text-2xl lg:text-[30px] mb-10 font-bold">Your Carts</h2>
 
             {
-              cartData.length === 0 ? (
+              state.cartData.length === 0 ? (
                 <h2 className="text-2xl text-center lg:text-[30px] mb-10 font-bold">Your Cart is Empty</h2>
 
               ) : (
                 <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
-                  {cartData.map((movie) => (
+                  {state.cartData.map((movie) => (
                     <div key={movie.id} className="grid grid-cols-[1fr_auto] gap-4">
                       <div className="flex items-center gap-4">
                         <img className="rounded overflow-hidden w-20 h-20" src={getImageUrl(movie?.cover)} alt="cartItem" />

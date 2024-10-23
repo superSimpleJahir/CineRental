@@ -10,7 +10,7 @@ function MovieCard({ movie }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const { cartData, setCartData } = useContext(MovieContext);
+  const { state, dispatch } = useContext(MovieContext);
 
   const handleCloseModal = () => {
     setSelectedMovie(null);
@@ -24,10 +24,13 @@ function MovieCard({ movie }) {
   const addToCart = (e, movie) => {
     e.stopPropagation();
 
-    const found = cartData.find((item) => item.id === movie.id);
+    const found = state?.cartData.find((item) => item.id === movie.id);
 
     if (!found) {
-      setCartData([...cartData, movie]);
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: { ...movie },
+      })
     } else {
       alert(`Already added to cart  ${movie.title} movie`);
     }
