@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import tag from '../assets/tag.svg';
 import { getImageUrl } from '../utils/cine-utility';
-function MovieDetailsModal({ onCloseModal, movie }) {
-
+function MovieDetailsModal({ onCloseModal, movie, onAddToCart }) {
   return (
     <>
       <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
@@ -20,7 +19,7 @@ function MovieDetailsModal({ onCloseModal, movie }) {
                 {movie?.description}
               </p>
               <div className="grid lg:grid-cols-2 gap-2">
-                <a className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
+                <a onClick={(e) => onAddToCart(e, movie)} className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
                   href="#">
                   <img src={tag} alt="tag" />
                   <span>$ {movie?.price} | Add to Cart</span>
