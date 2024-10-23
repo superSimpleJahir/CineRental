@@ -1,5 +1,6 @@
 import Footer from "./components/Footer"
 import Header from "./components/Header"
+import MovieDetailsModal from "./components/MovieDetailsModal"
 import MovieList from "./components/MovieList"
 import Sidebar from "./components/Sidebar"
 
@@ -14,6 +15,7 @@ function App() {
         </div>
       </main>
       <Footer />
+      {/* <MovieDetailsModal /> */}
     </>
   )
 }
